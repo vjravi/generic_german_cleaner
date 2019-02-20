@@ -16,10 +16,10 @@
 while getopts ":i:o:" option; do
     case "${option}" in
         i)
-            INPUT_FILE=${OPTARG}
+            input_file=${OPTARG}
             ;;
         o)
-            OUTPUT_FILE=${OPTARG}
+            output_file=${OPTARG}
             ;;
         *)
             usage
@@ -27,8 +27,8 @@ while getopts ":i:o:" option; do
     esac
 done
 
-echo "Input file: ${INPUT_FILE}"
-echo "Output file: ${OUTPUT_FILE}"
+echo "Input file: ${input_file}"
+echo "Output file: ${output_file}"
 
 
-cat $INPUT_ | sed -r "s/[^]A-Za-z0-9äöüÄÖÜßé\’\„\“\«\»\“\”\'\´\"\.\?\!\:\;\,\ \t\n\@\%\&\!\$\€\£\§\°\#\|\>\<\\\/\^\~\(\)\{\}\+\*\=(&amp)\_\–\—\-\—\–\-\[]//g" | sed 's/\&amp/\&/g'  | perl -C -pe "s/[-—–](?=[\s\-—–])|(?<=[\s\-—–])[-—–](?=[^0-9])//g" | sed '/^\s*$/d' >  $output_filename  &
+cat $input_file | sed -r "s/[^]A-Za-z0-9äöüÄÖÜßé\’\„\“\«\»\“\”\'\´\"\.\?\!\:\;\,\ \t\n\@\%\&\!\$\€\£\§\°\#\|\>\<\\\/\^\~\(\)\{\}\+\*\=(&amp)\_\–\—\-\—\–\-\[]//g" | sed 's/\&amp/\&/g'  | perl -C -pe "s/[-—–](?=[\s\-—–])|(?<=[\s\-—–])[-—–](?=[^0-9])//g" | sed '/^\s*$/d' >  $output_file
